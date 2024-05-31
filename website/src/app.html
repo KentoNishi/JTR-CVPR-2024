@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap" rel="stylesheet" />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+		.popup::after {
+			font-family: 'Material Icons';
+			content: 'open_in_new';
+			margin-left: 0.5rem;
+		}
+		button {
+			background-color: var(--gray-accent);
+			cursor: pointer;
+		}
+		:root {
+			--gray-fill: #151515;
+			--gray-fill-lighter: #2f2f2f;
+			--gray-accent: #bebebe;
+			--blue-accent: #1b98ff;
+			--grid-padding: 2rem;
+			color-scheme: light;
+		}
+	</style>
+</html>

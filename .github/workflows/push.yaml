@@ -1,0 +1,28 @@
+name: Push to Master Repo
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: 'master'
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - run: |
+          git remote add official git@github.com:KentoNishi/JTR-CVPR-2024.git
+          git config --global user.email ${{ secrets.EMAIL }}
+          git config --global user.name ${{ secrets.USERNAME }}
+          git checkout master
+          # squash all commits into one
+          git reset $(git commit-tree HEAD^{tree} -m "Update at $(date +'%Y-%m-%d %H:%M:%S')")
+          git push -u official master -f
